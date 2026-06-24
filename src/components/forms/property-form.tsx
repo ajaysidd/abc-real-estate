@@ -9,8 +9,8 @@ import {
 
 
 export default function PropertyForm() {
-  const [image, setImage] = useState<File | null>(
-  null
+  const [images, setImages] = useState<File[]>(
+  []
 );
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -55,8 +55,15 @@ export default function PropertyForm() {
     return;
   }
 
-  if (image && data) {
-    try {
+if (images.length > 0 && data) {
+  try {
+    for (
+      let index = 0;
+      index < images.length;
+      index++
+    ) {
+      const image = images[index];
+
       const fileName = `${Date.now()}-${image.name}`;
 
       await uploadPropertyImage(
@@ -74,17 +81,18 @@ export default function PropertyForm() {
             property_id: data.id,
             url: imageUrl,
             public_id: fileName,
-            is_primary: true,
-            display_order: 1,
+            is_primary: index === 0,
+            display_order: index + 1,
           });
 
       if (imageError) {
         console.error(imageError);
       }
-    } catch (uploadError) {
-      console.error(uploadError);
     }
+  } catch (uploadError) {
+    console.error(uploadError);
   }
+}
 
   alert("Property created successfully!");
 
@@ -95,7 +103,7 @@ export default function PropertyForm() {
   setAddress("");
   setCity("");
   setStateValue("");
-  setImage(null);
+  setImages([]);
 }
 
   return (
@@ -243,20 +251,31 @@ export default function PropertyForm() {
     Property Image
   </label>
 
- <input
+   <input
   type="file"
   accept="image/*"
+  multiple
   className="w-full border rounded-lg p-3"
   onChange={(e) =>
-    setImage(
-      e.target.files?.[0] || null
+    setImages(
+      Array.from(
+        e.target.files || []
+      )
     )
   }
 />
-{image && (
-  <p className="text-green-600">
-    Selected: {image.name}
-  </p>
+{images.length > 0 && (
+  <div className="text-green-600">
+    <p>
+      Selected Images:
+    </p>
+
+    {images.map((image) => (
+      <p key={image.name}>
+        • {image.name}
+      </p>
+    ))}
+  </div>
 )}
 </div>
 

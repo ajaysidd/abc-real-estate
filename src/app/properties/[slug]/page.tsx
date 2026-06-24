@@ -31,7 +31,7 @@ console.log("Images:", images);
         ← Back to Properties
       </Link>
 
-      {images.length > 0 && (
+     {images.length > 0 && (
   <div className="mb-8">
     <Image
       src={images[0].url}
@@ -40,6 +40,21 @@ console.log("Images:", images);
       height={700}
       className="rounded-xl w-full h-[450px] object-cover"
     />
+
+    {images.length > 1 && (
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+        {images.slice(1).map((image) => (
+          <Image
+            key={image.id}
+            src={image.url}
+            alt={property.title}
+            width={300}
+            height={200}
+            className="rounded-lg h-32 w-full object-cover"
+          />
+        ))}
+      </div>
+    )}
   </div>
 )}
 
