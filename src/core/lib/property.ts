@@ -1,21 +1,61 @@
 import { supabase } from "./supabase-client";
-export async function getProperties() {
- 
-
-  const { data, error } = await supabase
+export async function getProperties(
+  filters?: {
+    search?: string;
+    city?: string;
+    propertyType?: string;
+    minPrice?: string;
+    maxPrice?: string;
+  }
+) {
+  let query = supabase
     .from("properties")
     .select("*")
     .order("created_at", {
       ascending: false,
     });
 
-      console.log("Properties:", data);
+  if (filters?.search) {
+    query = query.or(
+      `title.ilike.%${filters.search}%,city.ilike.%${filters.search}%`
+    );
+  }
+
+  if (filters?.city) {
+    query = query.eq(
+      "city",
+      filters.city
+    );
+  }
+
+  if (filters?.propertyType) {
+    query = query.eq(
+      "property_type",
+      filters.propertyType
+    );
+  }
+
+  if (filters?.minPrice) {
+    query = query.gte(
+      "price",
+      Number(filters.minPrice)
+    );
+  }
+
+  if (filters?.maxPrice) {
+    query = query.lte(
+      "price",
+      Number(filters.maxPrice)
+    );
+  }
+
+  const { data, error } =
+    await query;
 
   if (error) throw error;
 
   return data;
 }
-
 
 export async function getPropertyBySlug(slug: string) {
   const { data, error } = await supabase
@@ -80,6 +120,19 @@ export async function deleteProperty(
     .from("properties")
     .delete()
     .eq("id", id);
+
+  if (error) throw error;
+
+  return true;
+}
+
+export async function deletePropertyImage(
+  imageId: string
+) {
+  const { error } = await supabase
+    .from("property_images")
+    .delete()
+    .eq("id", imageId);
 
   if (error) throw error;
 

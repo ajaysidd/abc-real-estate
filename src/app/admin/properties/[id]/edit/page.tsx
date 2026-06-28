@@ -1,6 +1,8 @@
 import EditPropertyForm from "@/components/forms/edit-property-form";
-import { getPropertyById } from "@/core/lib/property";
-
+import {
+  getPropertyById,
+  getPropertyImages,
+} from "@/core/lib/property";
 interface Props {
   params: Promise<{
     id: string;
@@ -14,6 +16,8 @@ export default async function EditPropertyPage({
 
   const property =
     await getPropertyById(id);
+  const images =
+  await getPropertyImages(id);  
 
   return (
     <main className="max-w-4xl mx-auto p-8">
@@ -23,6 +27,7 @@ export default async function EditPropertyPage({
 
      <EditPropertyForm
   property={property}
+  images={images}
 />
     </main>
   );

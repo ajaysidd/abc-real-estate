@@ -1,32 +1,26 @@
-import { getProperties } from "@/core/lib/property";
+import HeroSection from "@/components/home/hero-section";
+import FeaturedProperties from "@/components/home/featured-properties";
+import FeaturedProjects from "@/components/home/featured-projects";
+import WhyChooseUs from "@/components/home/why-choose-us";
+import CallToAction from "@/components/home/call-to-action";
+import ContactSection from "@/components/home/contact-section";
 
-export default async function HomePage() {
-  const properties = await getProperties();
-
+export default function HomePage() {
   return (
-    <main className="p-10">
-      <h1 className="text-3xl font-bold mb-6">
-        HAYANAN Real Estate
-      </h1>
+    <main>
 
-      <div className="space-y-4">
-        {properties?.map((property) => (
-          <div
-            key={property.id}
-            className="border rounded-lg p-4"
-          >
-            <h2 className="font-semibold">
-              {property.title}
-            </h2>
+      <HeroSection />
 
-            <p>{property.description}</p>
+      <FeaturedProperties />
 
-            <p>
-              ₹ {property.price}
-            </p>
-          </div>
-        ))}
-      </div>
+      <FeaturedProjects />
+
+      <WhyChooseUs />
+
+      <CallToAction />
+
+      <ContactSection />
+
     </main>
   );
 }

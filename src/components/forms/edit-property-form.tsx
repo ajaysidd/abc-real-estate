@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { updateProperty } from "@/core/lib/property";
-
+import {
+  updateProperty,
+  deletePropertyImage,
+} from "@/core/lib/property";
 interface Props {
   property: {
     id: string;
@@ -10,10 +13,17 @@ interface Props {
     city: string;
     price: number;
   };
+
+  images: {
+    id: string;
+    url: string;
+    is_primary: boolean;
+  }[];
 }
 
 export default function EditPropertyForm({
   property,
+  images,
 }: Props) {
   const [title, setTitle] = useState(
     property.title
@@ -53,7 +63,29 @@ export default function EditPropertyForm({
       );
     }
   }
+async function handleDeleteImage(
+  imageId: string
+) {
+  const confirmed = confirm(
+    "Delete this image?"
+  );
 
+  if (!confirmed) return;
+
+  try {
+    await deletePropertyImage(imageId);
+
+    alert("Image deleted.");
+
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      "Failed to delete image."
+    );
+  }
+}
   return (
     <form
       onSubmit={handleSubmit}
@@ -103,6 +135,51 @@ export default function EditPropertyForm({
           className="w-full border rounded-lg p-3"
         />
       </div>
+      
+       <div>
+  <h2 className="text-2xl font-semibold mb-4">
+    Property Images
+  </h2>
+
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+  
+    {images.map((image) => (
+      <div
+        key={image.id}
+        className="border rounded-lg p-2"
+      >
+        <Image
+          src={image.url}
+          alt="Property"
+          width={300}
+          height={200}
+          className="rounded-lg w-full h-32 object-cover"
+        />
+
+        {image.is_primary && (
+          <p className="text-green-600 text-sm mt-2">
+            Primary Image
+          </p>
+        )}
+     
+       {!image.is_primary && (
+  <button
+    type="button"
+    onClick={() =>
+      handleDeleteImage(image.id)
+    }
+    className="mt-2 text-red-600 text-sm hover:underline"
+  >
+    Delete Image
+  </button>
+)} 
+
+      </div>
+    ))}
+  </div>
+</div>
+       
+        
 
       <button
         type="submit"
