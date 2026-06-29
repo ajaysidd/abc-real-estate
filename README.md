@@ -1,36 +1,336 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏡 HAYANAN Real Estate Website
 
-## Getting Started
+A modern, full-stack Real Estate Management System built using 
+**Next.js 16**,
+**TypeScript**, 
+**Tailwind CSS**, and 
+**Supabase**. 
+The application enables visitors to explore properties and projects while providing an administrative dashboard for managing listings, projects, and customer inquiries.
 
-First, run the development server:
+---
+
+## 🌐 Live Demo
+
+**Website:** https://your-vercel-url.vercel.app
+
+---
+
+## 📸 Preview
+
+> Add screenshots of the following pages:
+
+* Home Page
+* Properties Page
+* Projects Page
+* Property Details
+* Admin Dashboard
+* Contact Page
+
+---
+
+# ✨ Features
+
+### Visitor Features
+
+* Responsive modern UI
+* Browse available properties
+* View ongoing projects
+* Property detail pages
+* Project detail pages
+* Contact form
+* Inquiry submission
+* SEO optimized pages
+
+---
+
+### Admin Features
+
+* Secure authentication
+* Dashboard
+* Property Management (CRUD)
+* Project Management (CRUD)
+* Inquiry Management
+* Update Inquiry Status
+* Mark Inquiry as Read
+* Image Upload
+* Responsive Admin Panel
+
+---
+
+### Technical Features
+
+* Full TypeScript Support
+* Server Components
+* Client Components
+* Supabase Database
+* Supabase Storage
+* Image Optimization
+* Dynamic Routing
+* Metadata & SEO
+* Sitemap
+* Robots.txt
+* Open Graph Support
+* Centralized Configuration System
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+* Next.js 16
+* React
+* TypeScript
+* Tailwind CSS
+
+## Backend
+
+* Supabase
+* PostgreSQL
+* Supabase Authentication
+* Supabase Storage
+
+## Deployment
+
+* Git
+* GitHub
+* Vercel
+
+---
+
+# 📂 Project Structure
+
+```text
+src/
+│
+├── app/
+│   ├── admin/
+│   ├── auth/
+│   ├── contact/
+│   ├── projects/
+│   ├── properties/
+│   └── ...
+│
+├── components/
+│   ├── forms/
+│   ├── home/
+│   ├── layout/
+│   ├── projects/
+│   ├── properties/
+│   └── ui/
+│
+├── core/
+│   ├── config/
+│   ├── lib/
+│   ├── services/
+│   └── utils/
+│
+└── middleware.ts
+```
+
+---
+
+# ⚙ Configuration
+
+The project uses centralized configuration for easier maintenance.
+
+```
+src/core/config/
+```
+
+Contains:
+
+* site.ts
+* contact.ts
+* navigation.ts
+* socials.ts
+
+Updating these files changes branding and business information throughout the project.
+
+---
+
+# 🗄 Database
+
+Supabase PostgreSQL
+
+Main Tables
+
+* users
+* properties
+* projects
+* inquiries
+
+---
+
+# 📷 Storage
+
+Supabase Storage
+
+Used for:
+
+* Property Images
+* Project Images
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/ajaysidd/hayanan-real-estate.git
+```
+
+Navigate into the project
+
+```bash
+cd hayanan-real-estate
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# 🔐 Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+.env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add
 
-## Deploy on Vercel
+```env
+NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+# 📦 Build
+
+```bash
+npm run build
+```
+
+---
+
+# 🚀 Deployment
+
+The project is deployed using
+
+* GitHub
+* Vercel
+
+Deployment Workflow
+
+```
+Developer
+↓
+
+Git
+
+↓
+
+GitHub
+
+↓
+
+Vercel
+
+↓
+
+Production
+```
+
+---
+
+# SEO
+
+Implemented
+
+* Metadata API
+* Dynamic Title
+* Dynamic Description
+* Sitemap
+* Robots.txt
+* Open Graph
+* Favicon
+
+---
+
+# 📱 Responsive Design
+
+Optimized for
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+---
+
+# 🔒 Security
+
+* Authentication
+* Protected Admin Routes
+* Environment Variables
+* Server-side Database Access
+* Secure Image Storage
+
+---
+
+# 📈 Future Improvements
+
+* Google Maps Integration
+* Property Search Filters
+* Payment Gateway
+* Property Booking
+* Email Notifications
+* WhatsApp Integration
+* Analytics Dashboard
+* Multi-Agent Support
+* Dark Mode
+
+---
+
+# 👨‍💻 Developer
+
+**Ajay**
+
+Master of Computer Applications (MCA)
+
+Interested in
+
+* Full Stack Development
+* Cloud Computing
+* DevOps
+* AWS
+
+GitHub
+
+https://github.com/ajaysidd
+
+---
+
+# 📄 License
+
+This project is developed for educational and portfolio purposes.
