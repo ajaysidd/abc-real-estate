@@ -11,7 +11,7 @@ The application enables visitors to explore properties and projects while provid
 
 ## 🌐 Live Demo
 
-**Website:** https://your-vercel-url.vercel.app
+**Website:** https://hayanan-real-estate.vercel.app
 
 ---
 
@@ -218,9 +218,9 @@ Create
 Add
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_URL=*************************
 
-NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_ANON_KEY=************************
 ```
 
 ---
