@@ -6,6 +6,8 @@ export async function getProperties(
     propertyType?: string;
     minPrice?: string;
     maxPrice?: string;
+    page?: number;
+    pageSize?: number;
   }
 ) {
   let query = supabase
@@ -48,6 +50,14 @@ export async function getProperties(
       Number(filters.maxPrice)
     );
   }
+
+const page = filters?.page ?? 1;
+const pageSize = filters?.pageSize ?? 10;
+
+query = query.range(
+  (page - 1) * pageSize,
+  page * pageSize - 1
+);
 
   const { data, error } =
     await query;
@@ -137,4 +147,18 @@ export async function deletePropertyImage(
   if (error) throw error;
 
   return true;
+}
+
+export async function getRecentProperties(limit = 5) {
+  const { data, error } = await supabase
+    .from("properties")
+    .select("*")
+    .order("created_at", {
+      ascending: false,
+    })
+    .limit(limit);
+
+  if (error) throw error;
+
+  return data;
 }

@@ -39,3 +39,17 @@ export async function markInquiryAsRead(
 
   if (error) throw error;
 }
+
+export async function getRecentInquiries(limit = 5) {
+  const { data, error } = await supabase
+    .from("inquiries")
+    .select("*")
+    .order("created_at", {
+      ascending: false,
+    })
+    .limit(limit);
+
+  if (error) throw error;
+
+  return data;
+}
