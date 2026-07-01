@@ -1,17 +1,16 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(
-  request: NextRequest
-) {
-  const accessToken =
-    request.cookies.get(
-      "sb-access-token"
-    );
+export function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === "/admin/login") {
+    return NextResponse.next();
+  }
+
+  const accessToken = request.cookies.get("sb-access-token");
 
   if (!accessToken) {
     return NextResponse.redirect(
-      new URL("/login", request.url)
+      new URL("/admin/login", request.url)
     );
   }
 
